@@ -13,9 +13,9 @@ class BuatTableMatakuliah extends Migration
     public function up()
     {
         Schema::create('matakuliah', function (Blueprint $table) {
-            $table->increments('id_matakuliah');
-            $table->string('title_matakuliah');
-            $table->string('keterangan_matakuliah');
+            $table->increments('id');
+            $table->string('title');
+            $table->string('keterangan');
             $table->timestamps();
         });
     }

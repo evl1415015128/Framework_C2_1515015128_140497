@@ -13,12 +13,13 @@ class BuatTableDosen extends Migration
     public function up()
     {
         Schema::create('dosen', function (Blueprint $table) {
-            $table->increments('id_dosen');
-            $table->char('nama_dosen',50);
+            $table->increments('id');
+            $table->char('nama',50);
             $table->char('nip',18);
             $table->text('alamat');
             $table->integer('pengguna_id',false,true);
             $table->foreign('pengguna_id')->references('id')->on('pengguna')->onDelete('cascade');
+            
             $table->timestamps();
         });
     }
