@@ -8,22 +8,22 @@ class Dosen extends Model
 {
     //
     protected $table = 'dosen';
-    protected $fillable = ['nama','nip','alamat','pengguna_id'];
+    //protected $fillable = ['nama','nip','alamat','pengguna_id'];
 
-    public function Pengguna()
+    public function pengguna()//fungsi pengguna untuk menentukan hubungan pada model user
     {
-    	return $this->belongsTo(Pengguna::class);
+    	return $this->belongsTo(Pengguna::class);  //untuk mendifinisikan nilai kembalian ke model dosen memiliki relasi dengan data pengguna
     }
     public function getUsernameAttribute(){
         return $this->pengguna->username;
     }
 
 
-    public function dosen_matakuliah()
+    public function dosenmatakuliah()//fungsi dosenmatakuliah untuk menentukan hubungan pada model user
     {
-    	return $this->hasMany(Dosen_Matakuliah::class);
-    }
-    public function listDosenDanNim(){
+    	return $this->hasMany(DosenMatakuliah::class);  //untuk mendifinisikan hubungan model dosen  memiliki relasi  many dengan data dosenmatakuliah
+        }
+    public function listDosenDanNip(){
         $out = [];
         foreach ($this->all() as $dsn) {
             $out[$dsn->id] = "{$dsn->nama} ({$dsn->nip})";

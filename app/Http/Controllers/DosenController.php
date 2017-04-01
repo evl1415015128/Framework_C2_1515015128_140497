@@ -57,7 +57,8 @@ class DosenController extends Controller
         $dosen->nama = $input->nama;
         $dosen->nip = $input->nip;
         $dosen->alamat = $input->alamat;
-        $dosen->pengguna_id = $input->pengguna_id;
+        $informasi=$dosen->save()?'Berhasil simpan data' :'Gagal update data';
+        /*$dosen->pengguna_id = $input->pengguna_id;
         if(!is_null($input->username)){
             $pengguna = $dosen->pengguna->fill($input->only('username'));
                 if(!empty($input->password)) $pengguna->password = $input->password;
@@ -65,7 +66,7 @@ class DosenController extends Controller
         }
         else{
             $this->informasi = 'Berhasil simpan data';
-        }
+        }*/
         return redirect ('dosen') -> with (['informasi'=>$this->informasi]);
        }
     public function hapus($id)

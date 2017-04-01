@@ -17,7 +17,6 @@ class MahasiswaController extends Controller
         return view('mahasiswa.awal', compact('semuaMahasiswa'));
       
     }
-
     public function tambah()
     {
       
@@ -55,7 +54,8 @@ class MahasiswaController extends Controller
         $mahasiswa->nama = $input->nama;
         $mahasiswa->nim = $input->nim;
         $mahasiswa->alamat = $input->alamat;
-        $mahasiswa->pengguna_id = $input->pengguna_id;
+        $informasi=$mahasiswa->save()?'Berhasil simpan data' :'Gagal update data';
+        /*$mahasiswa->pengguna_id = $input->pengguna_id;
         if(!is_null($input->username)){
             $pengguna = $mahasiswa->pengguna->fill($input->only('username'));
                 if(!empty($input->password)) $pengguna->password = $input->password;
@@ -63,7 +63,7 @@ class MahasiswaController extends Controller
         }
         else{
             $this->informasi = 'Berhasil simpan data';
-        }
+        }*/
         // $informasi = $mahasiswa->save() ? 'Berhasil update data': 'Gagal update data';
         return redirect ('mahasiswa') -> with (['informasi'=>$this->informasi]);
     }
