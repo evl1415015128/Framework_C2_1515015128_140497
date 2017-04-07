@@ -1,4 +1,4 @@
- @extends('master')
+@extends('master')
 @section('container')
 <div class="panel panel-primary">
 	<div class="panel-heading">

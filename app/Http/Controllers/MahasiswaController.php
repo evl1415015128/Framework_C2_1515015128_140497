@@ -14,8 +14,7 @@ class MahasiswaController extends Controller
     public function awal()
     {   
        $semuaMahasiswa = Mahasiswa::all();//
-        return view('mahasiswa.awal', compact('semuaMahasiswa'));
-      
+        return view('mahasiswa.awal', compact('semuaMahasiswa')); 
     }
     public function tambah()
     {
@@ -54,24 +53,24 @@ class MahasiswaController extends Controller
         $mahasiswa->nama = $input->nama;
         $mahasiswa->nim = $input->nim;
         $mahasiswa->alamat = $input->alamat;
-        $informasi=$mahasiswa->save()?'Berhasil simpan data' :'Gagal update data';
-        /*$mahasiswa->pengguna_id = $input->pengguna_id;
-        if(!is_null($input->username)){
-            $pengguna = $mahasiswa->pengguna->fill($input->only('username'));
-                if(!empty($input->password)) $pengguna->password = $input->password;
-                if($pengguna->save()) $this->informasi = 'Berhasil simpan data';
-        }
-        else{
+        $mahasiswa->save();
+        if(!is_null($input->username)) {
+        $pengguna = $mahasiswa ->pengguna->fill($input->only('username'));
+        if(!empty($input->password)) $pengguna->password = $input->password;   
+        if($pengguna->save()){
             $this->informasi = 'Berhasil simpan data';
-        }*/
-        // $informasi = $mahasiswa->save() ? 'Berhasil update data': 'Gagal update data';
-        return redirect ('mahasiswa') -> with (['informasi'=>$this->informasi]);
-    }
+        }else{
+             $this->informasi = 'Berhasil ubah data';
+        }
+       return redirect ('mahasiswa') -> with (['informasi'=>$this->informasi]);
+    }}
     public function hapus($id)
     {
         $mahasiswa = Mahasiswa::find($id);
         if($mahasiswa->pengguna()->delete()){
-            if($mahasiswa->delete()) $this->informasi = 'Berhasil hapus data';
+            if($mahasiswa->delete()) {
+            $this->informasi = 'Berhasil hapus data';
+        }
         }
        return redirect('mahasiswa')-> with(['informasi'=>$this->informasi]);
     }

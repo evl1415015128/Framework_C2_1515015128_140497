@@ -13,7 +13,6 @@
 				<th>Nama Mahasiswa</th>
 				<th>Nim Mahasiswa</th>
 				<th>Alamat Mahasiswa</th>
-				
 				<th>Aksi</th>
 			</tr>
 		</thead>

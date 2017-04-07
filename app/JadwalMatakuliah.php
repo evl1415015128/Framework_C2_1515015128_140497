@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class JadwalMatakuliah extends Model
 {
     protected $table = 'jadwalmatakuliah';
-    protected $fillable = ['mahasiswa_id','ruangan_id','dosen_matakuliah_id'];
+    protected $fillable = ['mahasiswa_id','ruangan_id','dosenmatakuliah_id'];
         
     public function mahasiswa()//fungsi mahasiswa untuk menentukan hubungan pada model user
     
@@ -23,9 +23,9 @@ class JadwalMatakuliah extends Model
     public function dosenmatakuliah()//fungsi dosen untuk menentukan hubungan pada model user
     {
         return $this->belongsTo(DosenMatakuliah::class);//untuk mendifinisikan nilai kembalian ke model dosenmatakuliah memiliki relasi dengan data jadwalmatakuliah
-            }
+    }
 
-    public function getNamadsnAttribute(){
+   /* public function getNamadsnAttribute(){
         return $this->dosenmatakuliah->dosen->nama;
     }
     public function getNipdsnAttribute(){
@@ -45,6 +45,6 @@ class JadwalMatakuliah extends Model
     public function getTitleruanganAttribute(){
         return $this->ruangan->title;
     }
-
+*/
     
 }

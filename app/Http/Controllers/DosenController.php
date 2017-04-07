@@ -53,22 +53,22 @@ class DosenController extends Controller
 
     public function update($id, Request $input)
     {
-        $dosen = Dosen::find($id);
+       $dosen = dosen::find($id);
         $dosen->nama = $input->nama;
         $dosen->nip = $input->nip;
         $dosen->alamat = $input->alamat;
-        $informasi=$dosen->save()?'Berhasil simpan data' :'Gagal update data';
-        /*$dosen->pengguna_id = $input->pengguna_id;
+        $dosen->save();
+        
         if(!is_null($input->username)){
             $pengguna = $dosen->pengguna->fill($input->only('username'));
-                if(!empty($input->password)) $pengguna->password = $input->password;
-                if($pengguna->save()) $this->informasi = 'Berhasil simpan data';
+            if(!empty($input->password)) $pengguna->password = $input->password;
+            if($pengguna->save()) $this->informasi = 'Berhasil Simpan Data';
+        }else{
+            $this->informasi = 'Berhasil Ubah Data';        
         }
-        else{
-            $this->informasi = 'Berhasil simpan data';
-        }*/
-        return redirect ('dosen') -> with (['informasi'=>$this->informasi]);
-       }
+        return redirect('dosen')->with(['informasi' => $this->informasi]);
+    }
+
     public function hapus($id)
     {
         $dosen = Dosen::find($id);

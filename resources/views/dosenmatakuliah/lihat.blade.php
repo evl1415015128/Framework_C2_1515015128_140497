@@ -2,23 +2,18 @@
 @section('container')
 <div class="panel panel-warning">
 	<div class="panel-heading">
-		<strong><a href="{{ url('dosenmatakuliah') }}"><i style+"color:#8a6d3b" class="fa text-default fa-chevron-left"></i></a> Detail Data Jadwal Dosen</strong>		
+		<strong><a href="{{ url('dosenmatakuliah') }}"><i style+"color:#8a6d3b" class="fa text-default fa-chevron-left"></i></a> Detail Dosen Matakuliah</strong>		
 	</div>
 	<table class="table">
 		<tr>
-			<td>Nama Dosen</td>
+			<td>Dosen ID</td>
 			<td>:</td>
-			<td>{{ $dosenmatakuliah->dosen->nama }}</td>
-		</tr>
+			<td>{{ $dosenmatakuliah->dosen_id }}</td>
+		</tr>	
 		<tr>
-			<td>NIP</td>
+			<td>Matakuliah ID</td>
 			<td>:</td>
-			<td>{{ $dosenmatakuliah->dosen->nip }}</td>
-		</tr>
-		<tr>
-			<td>Matakuliah</td>
-			<td>:</td>
-			<td>{{ $dosenmatakuliah->matakuliah->title }}</td>
+			<td>{{ $dosenmatakuliah->matakuliah_id }}</td>
 		</tr>
 		<tr>
 			<td class="col-xs-4">Dibuat tanggal</td>

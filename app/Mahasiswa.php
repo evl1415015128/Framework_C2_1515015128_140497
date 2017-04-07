@@ -18,16 +18,16 @@ class Mahasiswa extends Model
     	return $this->pengguna->username;
     }
 
-    public function listMahasiswaDanNim(){
-    	$out = [];
-    	foreach ($this->all() as $mhs) {
-    		$out[$mhs->id] = "{$mhs->nama} ({$mhs->nim})";
-    	}
-    	return $out;
-    }
-    public function jadwalmatakuliah()//fungsi dosen untuk menentukan hubungan pada model user
+    public function jadwalmatakuliah()//fungsi jadwalmatakuliah untuk menentukan hubungan pada model user
     {
-        return $this->hasMany(JadwalMatakuliah::class);///untuk mendifinisikan hubungan model mahasiswa memiliki relasi many dengan data jadwalmatakuliah 
+        return $this->hasMany(JadwalMatakuliah::class,'mahasiswa_id');///untuk mendifinisikan hubungan model mahasiswa memiliki relasi many dengan data jadwalmatakuliah 
       }
     
+    public function listMahasiswaDanNim(){
+        $out = [];
+        foreach ($this->all() as $mahasiswa) {
+            $out[$mahasiswa->id] = "{$mahasiswa->nama} ({$mahasiswa->nim})";
+        }
+        return $out;
+    }
 }

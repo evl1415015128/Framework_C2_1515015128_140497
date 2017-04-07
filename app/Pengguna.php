@@ -17,3 +17,4 @@ class Pengguna extends Model
     {
     	return $this->hasOne(Mahasiswa::class);//untuk mendifinisikan hubungan model pengguna memiliki relasi one dengan data mahasiswa
 }
+}

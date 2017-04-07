@@ -12,6 +12,7 @@ use App\Matakuliah;
 
 class DosenMatakuliahController extends Controller
 {
+    protected $guarded = ['id'];
     protected $informasi = 'Gagal melakukan aksi';
 
     public function awal()
@@ -26,37 +27,46 @@ class DosenMatakuliahController extends Controller
         $dosen = new Dosen;
         $matakuliah = new Matakuliah;
         return view('dosenmatakuliah.tambah',compact('dosen','matakuliah'));
-      return $this->simpan();
+ 
     }
+
+      
     public function simpan(Request $input)
     {
-                $jadwalmatakuliah = new JadwalMatakuliah;
-        $dosenmatakuliah = new DosenMatakuliah($input->only('dosen_id','matakuliah_id'));
-            if($jadwalmatakuliah->save()) $this->informasi = "Jadwal Dosen Mengajar berhasil disimpan";
-            return redirect('dosenmatakuliah')->with(['informasi'=>$this->informasi]);
-
-   }
-    public function lihat($id){
-        $dosenmatakuliah = DosenMatakuliah::find($id);
-        return view('dosenmatakuliah.lihat',compact('dosenmatakuliah'));
-    }
+        //$jadwalmatakuliah = new JadwalMatakuliah;
+          $dosenmatakuliah = new Dosenmatakuliah($input->only('dosen_id','matakuliah_id'));
+        if ($dosenmatakuliah->save()) $this->informasi = 'Dosen Matakuliah Berhasil Di Simpan';
+        return redirect('dosenmatakuliah')->with(['informasi' => $this->informasi]);
+    
+       }
     public function edit($id){
         $dosenmatakuliah = DosenMatakuliah::find($id);
         $dosen = new Dosen;
         $matakuliah = new Matakuliah;
         return view('dosenmatakuliah.edit',compact('dosen','matakuliah','dosenmatakuliah'));
     }
+    public function lihat($id){
+        $dosenmatakuliah = DosenMatakuliah::find($id);
+        return view('dosenmatakuliah.lihat')->with(array('dosenmatakuliah'=>$dosenmatakuliah));
+    }
+    
     public function update($id,Request $input)
     {
         $dosenmatakuliah = DosenMatakuliah::find($id);
-        $dosenmatakuliah->fill($input->only('dosen_id','matakuliah_id'));
+        $dosenmatakuliah ->dosen_id=$input->dosen_id;
+        $dosenmatakuliah ->matakuliah_id=$input->matakuliah_id;
+        $informasi=$dosenmatakuliah->save()?'Berhasil Update':'Gagal Update Data';
+        
+        /*$dosenmatakuliah->fill($input->only('dosen_id','matakuliah_id'));
         if($dosenmatakuliah->save()) $this->informasi = "Jadwal Dosen Mengajar berhasil diperbarui";
+        */
         return redirect('dosenmatakuliah')->with(['informasi'=>$this->informasi]);
     }
-    public function hapus($id,Request $input)
+    public function hapus($id)
     {
         $dosenmatakuliah = DosenMatakuliah::find($id);
-        if($dosenmatakuliah->delete()) $this->informasi = "Jadwal Mahasiswa berhasil dihapus";
+        $informasi = $dosenmatakuliah->delete()? 'Berhasil hapus data' : 'gagal hapus data';
+                //if($dosenmatakuliah->delete()) $this->informasi = "Jadwal Mahasiswa berhasil dihapus";
         return redirect('dosenmatakuliah')-> with(['informasi'=>$this->informasi]);
     }
 }

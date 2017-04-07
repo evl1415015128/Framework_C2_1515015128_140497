@@ -15,6 +15,9 @@ Route::post('jadwalmatakuliah/simpan', 'JadwalMatakuliahController@simpan');//
 Route::get('jadwalmatakuliah/edit/{jadwalmatakuliah}', 'JadwalMatakuliahController@edit');//
 Route::post('jadwalmatakuliah/edit/{jadwalmatakuliah}', 'JadwalMatakuliahController@update');//
 Route::get('jadwalmatakuliah/hapus/{jadwalmatakuliah}', 'JadwalMatakuliahController@hapus');//
+Route::get('jadwalmatakuliah/tambah', 'JadwalMatakuliahController@tambah');
+Route::get('jadwalmatakuliah', 'JadwalMatakuliahController@awal');
+
 
 Route::get('dosenmatakuliah/lihat/{dosenmatakuliah}', 'DosenMatakuliahController@lihat');//
 Route::post('dosenmatakuliah/simpan', 'DosenMatakuliahController@simpan');//
