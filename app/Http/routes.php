@@ -10,6 +10,31 @@
 | and give it the controller to call when that URI is requested.
 |
 */
+Route::get('/ada_huruf_d',function()
+{
+	return \App\DosenMatakuliah::whereHas('dosen',function($query)
+	{
+		$query->where('nama','like','%d%');
+	})->with('dosen')->groupBy('dosen_id')->get();
+});
+
+Route::get('/ada_huruf_d_dan_a',function()
+{
+	return \App\DosenMatakuliah::whereHas('dosen',function($query)
+	{
+		$query->where('nama','like','%d%');
+	})
+	->orWhereHas('matakuliah',function($kueri)
+	{
+		$kueri->where('title','like','%a%');
+	})
+	->with('dosen','matakuliah')
+	->groupBy('dosen_id')
+	->get();
+});
+Route::get('ujiHas','RelationshipRebornController@ujiHas');
+Route::get('ujiDoesntHave','RelationshipRebornController@ujiDoesntHave');
+
 Route::get('jadwalmatakuliah/lihat/{jadwalmatakuliah}', 'JadwalMatakuliahController@lihat');//
 Route::post('jadwalmatakuliah/simpan', 'JadwalMatakuliahController@simpan');//
 Route::get('jadwalmatakuliah/edit/{jadwalmatakuliah}', 'JadwalMatakuliahController@edit');//
@@ -75,9 +100,10 @@ Route::get('ruangan', 'RuanganController@awal');//
 
 Route::get('pengguna/tambah', 'PenggunaController@tambah');//route membaca yg lebih spesifik dulu khususnya lebih didahulukan contoh khusus tambah = 'pengguna/tambah'
 Route::get('pengguna', 'PenggunaController@awal');//route membaca yg lebih spesifik dulu khususnya lebih didahulukan contoh khusus pengguna = 'pengguna'
-Route::get('/', function () {
+
+/*Route::get('/', function () {
     return view('welcome');
-});
+});*/
 Route::get('/public', function () {
     return ('Nama Saya : Evi Lolita Apriyani');
 });

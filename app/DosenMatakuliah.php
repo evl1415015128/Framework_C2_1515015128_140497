@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class DosenMatakuliah extends Model
 {
     protected $table = 'dosenmatakuliah';
-   protected $fillable = ['dosen_id','matakuliah_id'];
+    protected $fillable = ['dosen_id','matakuliah_id'];
      public function dosen()//fungsi dosen untuk menentukan hubungan pada model user
     {
         return $this->belongsTo(Dosen::class); //untuk mendifinisikan nilai kembalian ke model dosenmatakuliah memiliki relasi dengan data dosen
