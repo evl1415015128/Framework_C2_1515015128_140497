@@ -10,15 +10,14 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-Route::get('/ada_huruf_d',function()
+Route::get('/ada_huruf_d_dosen',function()
 {
 	return \App\DosenMatakuliah::whereHas('dosen',function($query)
 	{
 		$query->where('nama','like','%d%');
 	})->with('dosen')->groupBy('dosen_id')->get();
 });
-
-Route::get('/ada_huruf_d_dan_a',function()
+Route::get('/ada_huruf_d_dan_a_dosenmatakuliah',function()
 {
 	return \App\DosenMatakuliah::whereHas('dosen',function($query)
 	{
@@ -30,6 +29,27 @@ Route::get('/ada_huruf_d_dan_a',function()
 	})
 	->with('dosen','matakuliah')
 	->groupBy('dosen_id')
+	->get();
+});
+Route::get('/ada_huruf_r_mahasiswa',function()
+{
+	return \App\JadwalMatakuliah::whereHas('mahasiswa',function($cueri)
+	{
+		$cueri->where('nama','like','%r%');
+	})->with('mahasiswa')->groupBy('mahasiswa_id')->get();
+});
+Route::get('/ada_huruf_s_dan_7_jadwalmatakuliah',function()
+{
+	return \App\JadwalMatakuliah::whereHas('mahasiswa',function($cueri)
+	{
+		$cueri->where('nama','like','%s%');
+	})
+	->orWhereHas('ruangan',function($vueri)
+	{
+		$vueri->where('title','like','%7%');
+	})
+	->with('mahasiswa','ruangan')
+	->groupBy('mahasiswa_id')
 	->get();
 });
 Route::get('ujiHas','RelationshipRebornController@ujiHas');
