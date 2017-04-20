@@ -9,6 +9,8 @@ use App\DosenMatakuliah;
 use App\JadwalMatakuliah;
 use App\Dosen;
 use App\Matakuliah;
+use App\Http\Requests\DosenMatakuliahRequest;
+
 
 class DosenMatakuliahController extends Controller
 {
@@ -31,7 +33,7 @@ class DosenMatakuliahController extends Controller
     }
 
       
-    public function simpan(Request $input)
+    public function simpan(DosenMatakuliahRequest $input)
     {
         //$jadwalmatakuliah = new JadwalMatakuliah;
           $dosenmatakuliah = new Dosenmatakuliah($input->only('dosen_id','matakuliah_id'));
@@ -50,7 +52,7 @@ class DosenMatakuliahController extends Controller
         return view('dosenmatakuliah.lihat')->with(array('dosenmatakuliah'=>$dosenmatakuliah));
     }
     
-    public function update($id,Request $input)
+    public function update($id,DosenMatakuliahRequest $input)
     {
         $dosenmatakuliah = DosenMatakuliah::find($id);
         $dosenmatakuliah ->dosen_id=$input->dosen_id;

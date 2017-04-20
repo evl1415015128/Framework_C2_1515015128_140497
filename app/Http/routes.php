@@ -138,3 +138,21 @@ Route::get('berita/{berita?}', function ($berita = "Laravel 5") {
     return "berita $berita belum dibaca";//route parameter
 });
 
+Route::get('/b',function(Illuminate\Http\Request $request)
+{	
+	echo "Ini adalah request dari method get  ".$request->nama;
+});
+
+use Illuminate\Http\Request;
+Route::get('/',function()
+{
+	echo Form::open(['url'=>'/']).
+		 Form::label('nama').
+		 Form::text('nama',null).
+		 Form::submit('kirim').
+		 Form::close();
+});
+Route::post('/',function(Request $request)
+{	
+	echo "hasil dari form input tadi nama: ".$request->nama;
+});
