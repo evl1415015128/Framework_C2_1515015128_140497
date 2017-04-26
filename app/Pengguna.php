@@ -2,19 +2,24 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Auth\Authenticatable;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Illuminate\Database\Eloquent\Model; 
 
-class Pengguna extends Model
+class Pengguna extends Model implements AuthenticatableContract
 {
+    use Authenticatable;
     protected $table = 'pengguna';
-    protected $fillable = ['username','password'];
+    // protected $fillable=['username','password'];
+    protected $guarded=['id'];
 
-   public function dosen()//fungsi dosen untuk menentukan hubungan pada model user
+    public function dosen()
     {
-    	return $this->hasOne(Dosen::class);//untuk mendifinisikan hubungan model pengguna memiliki relasi one dengan data dosen
-          }
-    public function mahasiswa()//fungsi nahasiswa untuk menentukan hubungan pada model user
+    	return $this->hasOne(Dosen::class,'pengguna_id');
+    }
+  
+    public function mahasiswa()
     {
-    	return $this->hasOne(Mahasiswa::class);//untuk mendifinisikan hubungan model pengguna memiliki relasi one dengan data mahasiswa
-}
+    	return $this->hasOne(Mahasiswa::class,'pengguna_id');
+    }
 }

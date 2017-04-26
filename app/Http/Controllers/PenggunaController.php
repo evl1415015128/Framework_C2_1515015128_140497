@@ -22,12 +22,12 @@ class PenggunaController extends Controller
             'username'=>'required',
             'password'=>'required',
         ]);
-        $pengguna = new pengguna;  
+        /*$pengguna = new pengguna;  
         $pengguna->username=$input->username;
         $pengguna->password=$input->password;
         $informasi=$pengguna->save()?'Berhasil simpan data' :'Gagal simpan data';
         return redirect ('pengguna')->with(['informasi'=>$informasi]);
-    }
+    */}
     
     public function edit($id)
     {

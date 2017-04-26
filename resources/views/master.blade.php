@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
+
 	<title>@yield('page_title','Halaman Awal') | Laboratorium Pemograman FW</title>
 	<link rel="stylesheet" type="text/css" href="{{asset('component/bootstrap/dist/css/bootstrap.min.css')}}">
 	<link rel="stylesheet" type="text/css" href="{{asset('component/font-awesome/css/font-awesome.min.css')}}">
@@ -17,6 +18,16 @@
 	.form-horizontal{
 		padding: 15px 10px;
 	}
+
+            .content {
+            	margin-top: 80px;
+                text-align: center;
+                /*display: inline-block;*/
+            }
+
+            .title {
+                font-size: 40px;
+            }
 	footer{
 		padding-top: 15px;
 		text-align: right;
@@ -33,7 +44,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="{{url('/')}}">Laravel 5</a>
+				<a class="navbar-brand" href="{{url('/login')}}">Laravel 5</a>
 			</div>
 			<div id="navbar" class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
@@ -42,7 +53,8 @@
 						<ul class="dropdown-menu" aria-labelledby="dLabel">
 							<li><a href="{{url('mahasiswa')}}">Data Mahasiswa</a></li>
 							<li class="divider"></li>
-							<li><a href="{{url('jadwalmatakuliah')}}">Jadwal Mahasiswa</a></li>							
+
+							<li><a href="{{url('jadwal_matakuliah')}}">Jadwal Mahasiswa</a></li>							
 						</ul>
 					</li>
 					<li class="dropdown active">
@@ -50,7 +62,7 @@
 						<ul class="dropdown-menu" aria-labelledby="dLabel">
 							<li><a href="{{url('dosen')}}">Data dosen</a></li>
 							<li class="divider"></li>
-							<li><a href="{{url('dosenmatakuliah')}}">Jadwal Dosen Mengajar</a></li>							
+							<li><a href="{{url('dosen_matakuliah')}}">Jadwal Dosen Mengajar</a></li>							
 						</ul>
 					</li>
 
@@ -63,6 +75,7 @@
 							<li class="divider"></li>
 							<li><a href="{{ url('matakuliah') }}">Matakuliah</a></li>							
 						</ul>
+							<li><a href="{{ url('logout')}}">Logout</a></li>
 					</li>
 				</ul>
 				</div><!--/.nav collapse-->
@@ -73,24 +86,29 @@
 		<div class="container">
 			@if(Session::has('informasi'))
 				<div class="alert alert-info">
-					<strong>Informasi :</strong>
+					<strong> Informasi :</strong>
 					{{Session::get('informasi')}}
 				</div>
 			@endif
 			@if (count($errors) > 0)
-			<div class="alert alert-danger">
-			<ul>
-				@foreach ($errors->all() as $error)
-				<li>{{ $error }}</li>
-				@endforeach
-			</ul>
-			</div>
+				<div class="alert alert-danger">
+					<ul>
+						@foreach ($errors->all() as $error)
+						<li>{{ $error }}</li>
+						@endforeach
+					</ul>
+				</div>
 			@endif
+
 			@yield('container')
 			</div>
+
+			
+            <div>
+
 			<nav class="navbar navbar-default navbar-fixed-bottom">
 				<footer class="container">
-					created by <a href="##"><span><i class="fa fa-twitter" style"color#1da1f2"></i>@Evi Lolita</span></a>
+					created by <a href="#"><span><i class="fa fa-twitter" style"color#1da1f2"></i>@evilolita</span></a>
 				</footer>
 			</nav>
 			<script type="text/javascript" src="{{asset('component/jquery/dist/jquery.min.js') }}"></script>
